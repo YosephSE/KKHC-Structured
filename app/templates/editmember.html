@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="{{ url_for('static', filename='assets/img/apple-icon.png') }}"
+    />
+    <link rel="icon" href="{{ url_for('static', filename='img/logo.png') }}" type="image/x-icon">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <title>KKHC | Edit</title>
+    <!--     Fonts and icons     -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200"
+      rel="stylesheet"
+    />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
+    <!-- CSS Files -->
+    <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', filename='assets/css/paper-dashboard.css') }}" rel="stylesheet" />
+    <!-- CSS Just for demo purpose, don't include it in your project -->
+    <link href="{{ url_for('static', filename='assets/demo/demo.css') }}" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/mycss.css') }}" />
+  </head>
+
+  <body class="">
+    <div class="wrapper">
+      <div class="sidebar" data-color="white" data-active-color="danger">
+        <div class="logo">
+          <a href="/" class="simple-text logo-mini">
+            <div class="logo-image-small">
+              <img src="{{ url_for('static', filename='assets/img/logo-small.png') }}" />
+            </div>
+            <!-- <p>CT</p> -->
+          </a>
+          <a
+            href="/"
+            class="simple-text logo-normal"
+          >
+            Welcome, {{session["username"]}}
+            <!-- <div class="logo-image-big">
+            <img src="../assets/img/logo-big.png">
+          </div> -->
+          </a>
+        </div>
+        <div class="sidebar-wrapper">
+          <ul class="nav">
+            <li>
+              <a href="../../admin">
+                <i class="nc-icon nc-bank"></i>
+                <p>ዋና ማውጫ</p>
+              </a>
+            </li>
+            <li class="">
+              <a href="../../addmember">
+                <i class="nc-icon nc-simple-add"></i>
+                <p>አባላት ይጨምሩ</p>
+              </a>
+            </li>
+            <li>
+              <a href="../../analysis">
+                <i class="nc-icon nc-chart-bar-32"></i>
+                <p>አናለይሲስ ይስሩ</p>
+              </a>
+            </li>
+            <li>
+              <a href="../../members">
+                <i class="nc-icon nc-tile-56"></i>
+                <p>የአባላት ዝርዝር</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="main-panel">
+        <!-- Navbar -->
+        <nav
+          class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent"
+        >
+          <div class="container-fluid">
+            <div class="navbar-wrapper">
+              <div class="navbar-toggle">
+                <button type="button" class="navbar-toggler">
+                  <span class="navbar-toggler-bar bar1"></span>
+                  <span class="navbar-toggler-bar bar2"></span>
+                  <span class="navbar-toggler-bar bar3"></span>
+                </button>
+              </div>
+              <a class="navbar-brand" href="">የኮተቤ ቃለ ህይወት ቤተ-ክርስትያን፤ የአባላት መረጃ ቋት</a>
+            </div>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navigation"
+              aria-controls="navigation-index"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-bar navbar-kebab"></span>
+              <span class="navbar-toggler-bar navbar-kebab"></span>
+              <span class="navbar-toggler-bar navbar-kebab"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse justify-content-end"
+              id="navigation"
+            >
+              <form action="search" method="post">
+                <div class="input-group no-border">
+                  <input
+                    type="text"
+                    value=""
+                    class="form-control"
+                    placeholder="መፈለግያ..."
+                  />
+                  <div class="input-group-append">
+                    <div class="input-group-text">
+                      <i class="nc-icon nc-zoom-split"></i>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <!-- End Navbar -->
+        <div class="content addmember">
+          <div class="row addmember-size">
+            <div class="col-md-12">
+              <div class="card card-user">
+                <div class="card-header">
+                  <h5 class="card-title">የአባል መጨመርያ ፎርም</h5>
+                  {% for message in get_flashed_messages() %}
+                  <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  {% endfor %}
+                  {{member}}
+                </div>
+                <div class="card-body">
+                  <form action="editmember" method="post" enctype="multipart/form-data">
+                    <div class="file_upload">
+                      <label
+                        >ፎቶግራፍ *
+                        <input
+                          type="file"
+                          name="profile"
+                          id="fileToUpload"
+                          accept="image/*"
+                          class="btn btn-primary"
+                        />
+                      </label>
+                      
+                    </div>
+                    <div class="row user-raw">
+                      <div class="col-md-12 pr-1">
+                        <div class="form-group">
+                          <div class="row">
+                            
+                            <div class="col-md-1 px-1">
+                              <div class="form-group">
+                                <label for="title">ማዕረግ</label>
+                                <select
+                                  id="title"
+                                  name="title"
+                                  class="form-control"
+                                >
+                                  <option value="{{member[1]}}">{{member[1]}}</option>
+                                  <option value="አቶ">አቶ</option>
+                                  <option value="ወይዝሮ">ወይዝሮ</option>
+                                  <option value="ወይዘሪት">ወይዘሪት</option>
+                                  <option value="ወንድም">ወንድም</option>
+                                  <option value="እህት">እህት</option>
+                                  <option value="ተማሪ">ተማሪ</option>
+                                  <option value="መጋቢ">መጋቢ</option>
+                                  <option value="ዶክተር">ዶክተር</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                              <div class="form-group">
+                                <label for="f_name">ስም *</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="f_name"
+                                  name="f_name"
+                                  placeholder="ስም"
+                                  maxlength="100"
+                                  required
+                                  value="{{member[2]}}"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-4 px-1">
+                              <div class="form-group">
+                                <label for="m_name">የአባት ስም *</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="m_name"
+                                  name="m_name"
+                                  placeholder="የአባት ስም"
+                                  maxlength="100"
+                                  required
+                                  value="{{member[3]}}"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-3 px-1">
+                              <div class="form-group">
+                                <label for="l_name">የአያት ስም *</label>
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="l_name"
+                                  name="l_name"
+                                  placeholder="የአያት ስም"
+                                  maxlength="100"
+                                  required
+                                  value="{{member[4]}}"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row user-row">
+                      <div class="col-md-1 px-1">
+                        <label for="sex">ጾታ</label>
+                        <select name="sex" id="sex" class="form-control">
+                          <option value="{{member[5]}}">{{member[5]}}</option>
+                          <option value="ወንድ">ወንድ</option>
+                          <option value="ሴት">ሴት</option>
+                        </select>
+                      </div>
+                      <div class="col-md-3">
+                        <label for="dob">የልደት ቀን *</label>
+                        <input
+                          type="date"
+                          id="dob"
+                          name="dob"
+                          required
+                          class="form-control"
+                          value="{{member[6]}}"
+                        />
+                      </div>
+                      <div class="col-md-3 form-check form-check-inline">
+                        <span class="handicap">የአካል ጉዳት</span>
+                        <label for="yes" class="form-check-label">አዎ</label>
+                        <input
+                          type="radio"
+                          id="yes"
+                          name="handicap"
+                          value="true"
+                          class="form-check-input"
+                        />
+                        <label for="no" class="form-check-label">አይ</label>
+                        <input
+                          type="radio"
+                          id="no"
+                          name="handicap"
+                          value="false"
+                          class="form-check-input"
+                          checked
+                        />
+                      </div>
+                      <div class="col-md-4">
+                        <div id="handicapDescription" class="handicap_desc">
+                          <label for="description">የአካል ጉዳት አይነት:</label>
+                          <textarea
+                            name="description"
+                            id="description"
+                            class="form-control textarea"
+                            maxlength="250"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- address staff -->
+                    <div class="row user-raw">
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="subcity">ክፍለ-ከተማ *</label>
+                          <select
+                            id="subcity"
+                            name="subcity"
+                            class="form-control"
+                          >
+                          <option value="የካ">የካ</option>
+                          <option value="ለሚ ኩራ">ለሚ ኩራ</option>
+                          <option value="ቦሌ">ቦሌ</option>
+                          <option value="አቃቂ ቃሊቲ">አቃቂ ቃሊቲ</option>
+                          <option value="ኮልፌ">ኮልፌ ቀራኒዮ</option>
+                          <option value="ልደታ">ልደታ</option>
+                          <option value="ጉለሌ">ጉለሌ</option>
+                          <option value="አዲስ ከተማ">አዲስ ከተማ</option>
+                          <option value="ቂረቆስ">ቂረቆስ</option>
+                          <option value="አራዳ">አራዳ</option>
+                          <option value="ንፋስ">ንፋስ ስልክ ላፍቶ</option>
+                            <!-- Add more options as needed -->
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="district">ወረዳ *</label>
+                          <select
+                            id="district"
+                            name="district"
+                            class="form-control"
+                          >
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                          <option value="9">9</option>
+                          <option value="10">10</option>
+                          <option value="11">11</option>
+                          <option value="12">12</option>
+                            <!-- Add more options as needed -->
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="house_no">የቤት ቁጥር</label>
+                          <input
+                            type="text"
+                            id="house_no"
+                            name="house_no"
+                            placeholder="የቤት ቁጥር"
+                            maxlength="10"
+                            class="form-control"
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="other_name">ልዩ መጠርያ *</label>
+                          <input
+                            type="text"
+                            id="other_name"
+                            name="other_name"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="countryCode1">ስልክ ቁጥር*</label>
+                          <select
+                            id="countryCode1"
+                            name="countryCode"
+                            class="form-control"
+                          >
+                            <option value="eth">+251</option>
+                            <!-- Add more options as needed -->
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <span class="phone">
+                            <label for="phoneNumber1">ስልክ:</label>
+                            <input
+                              type="tel"
+                              maxlength="9"
+                              id="phoneNumber1"
+                              name="phoneNumber1"
+                              class="form-control"
+                              pattern="[0-9]{9}"
+                              required
+                            />
+                            <p class="error-msg" id="phno-err-msg1"></p>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <div class="form-group">
+                          <label for="countryCode2">የቤት ስልክ</label>
+                          <select
+                            id="countryCode2"
+                            name="countryCode"
+                            class="form-control"
+                          >
+                            <option value="eth">+251</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <span class="phone">
+                            <label for="phoneNumber2">ስልክ:</label>
+                            <input
+                              type="tel"
+                              maxlength="9"
+                              id="phoneNumber2"
+                              name="phoneNumber2"
+                              class="form-control"
+                              pattern="[0-9]{9}"
+                            />
+                            <p class="error-msg" id="phno-err-msg2"></p>
+                          </span>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label>ኢ-ሜይል</label>
+                          <input
+                            type="email"
+                            name="email"
+                            class="form-control"
+                            placeholder="ኢ-ሜይል"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-4 pr-1">
+                        <div class="form-group">
+                          <label for="bap_date">የጥምቀት ቀን </label>
+                          <input
+                            type="date"
+                            name="bap_date"
+                            id="bap_date"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-4 px-1">
+                        <div class="form-group">
+                          <label for="bap_where">የጥምቀት ቦታ</label>
+                          <input
+                            type="text"
+                            name="bap_where"
+                            id="bap_where"
+                            maxlength="150"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div class="col-md-4 pl-1">
+                        <div class="form-group">
+                          <label for="mem_date">አባልነት ቀን</label>
+                          <input
+                            type="date"
+                            name="mem_date"
+                            id="mem_date"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="service">በቤተ ክርስትያን ውስጥ አሉ?</span>
+                          <label for="yesInChurch">አዎ</label>
+                          <input
+                            type="radio"
+                            name="inchurch"
+                            value="true"
+                            id="yesInChurch"
+                          />
+                          <label for="noInChurch">አይ</label>
+                          <input
+                            type="radio"
+                            name="inchurch"
+                            value="false"
+                            id="noInChurch"
+                            checked
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div class="in_church" id="inChurch">
+                            በቤተ ክርስትያን አገልግሎት ውስጥ አሉ?
+                            <label
+                              >አዎ
+                              <input
+                                type="radio"
+                                name="service"
+                                value="true"
+                                id="yesService"
+                              />
+                            </label>
+                            <label
+                              >አይ
+                              <input
+                                type="radio"
+                                name="service"
+                                value="false"
+                                id="noService"
+                                checked
+                              />
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <div class="service_list" id="serviceId">
+                            <!-- choice list -->
+                            <!-- each one have to have a radio to show whether they are acitve or not -->
+                            <div class="singers">
+                              <label
+                                >ዝማሬ
+                                <input
+                                  type="checkbox"
+                                  name="singer"
+                                  class="servWhere1"
+                                  value="1"
+                                />
+                                <span class="serv_where" id="servWhereId1">
+                                  <label
+                                    >እያገለገሉ ነው
+                                    <input
+                                      type="radio"
+                                      name="status1"
+                                      value="1"
+                                      checked                                      
+                                    />
+                                  </label>
+                                  <label
+                                    >እያገለገሉ አይደለም
+                                    <input type="radio" name="status1" value="0" />
+                                  </label>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="children">
+                              <label
+                                >የልጆች አገልግሎት
+                                <input
+                                  type="checkbox"
+                                  name="children"
+                                  value="2"
+                                  class="servWhere2"
+                                />
+                                <span class="serv_where" id="servWhereId2">
+                                  <label
+                                    >እያገለገሉ ነው
+                                    <input
+                                      type="radio"
+                                      name="status2"
+                                      value="1"
+                                      checked
+                                      
+                                    />
+                                  </label>
+                                  <label
+                                    >እያገለገሉ አይደለም
+                                    <input type="radio" name="status2" value="0"/>
+                                  </label>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="prayer">
+                              <label
+                                >የጸሎት አገልግሎት
+                                <input
+                                  type="checkbox"
+                                  name="prayer"
+                                  value="3"
+                                  class="servWhere3"
+                                />
+                                <span class="serv_where" id="servWhereId3">
+                                  <label
+                                    >እያገለገሉ ነው
+                                    <input
+                                      type="radio"
+                                      name="status3"
+                                      value="1"
+                                      checked
+                                      
+                                    />
+                                  </label>
+                                  <label
+                                    >እያገለገሉ አይደለም
+                                    <input type="radio" name="status3" value="0"/>
+                                  </label>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="youth">
+                              <label
+                                >የወጣቶች አገልግሎት
+                                <input
+                                  type="checkbox"
+                                  name="youth"
+                                  class="servWhere4"
+                                  value="4"
+                                />
+                                <span class="serv_where" id="servWhereId4">
+                                  <label
+                                    >እያገለገሉ ነው
+                                    <input
+                                      type="radio"
+                                      name="status4"
+                                      value="1"
+                                      checked
+                                      
+                                    />
+                                  </label>
+                                  <label
+                                    >እያገለገሉ አይደለም
+                                    <input type="radio" name="status4" value="0"/>
+                                  </label>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="sisters">
+                              <label
+                                >የእህቶች አገልግሎት
+                                <input
+                                  type="checkbox"
+                                  name="girls"
+                                  class="servWhere5"
+                                  value="5"
+                                />
+                                <span class="serv_where" id="servWhereId5">
+                                  <label
+                                    >እያገለገሉ ነው
+                                    <input
+                                      type="radio"
+                                      name="status5"
+                                      value="1"
+                                      checked
+                                      
+                                    />
+                                  </label>
+                                  <label
+                                    >እያገለገሉ አይደለም
+                                    <input type="radio" name="status5" value="0"/>
+                                  </label>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="outreach">
+                              <label
+                                >የወንጌል ስርጭት አገልግሎት
+                                <input
+                                  type="checkbox"
+                                  name="outreach"
+                                  class="servWhere6"
+                                  value="6"
+                                />
+                                <span class="serv_where" id="servWhereId6">
+                                  <label
+                                    >እያገለገሉ ነው
+                                    <input
+                                      type="radio"
+                                      name="status6"
+                                      value="1"
+                                      checked
+                                      
+                                    />
+                                  </label>
+                                  <label
+                                    >እያገለገሉ አይደለም
+                                    <input type="radio" name="status6" value="0"/>
+                                  </label>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="deacon">
+                              <label
+                                >የዲያቆን አገልግሎት
+                                <input
+                                  type="checkbox"
+                                  name="deacon"
+                                  value="7"
+                                  class="servWhere7"
+                                />
+                                <span class="serv_where" id="servWhereId7">
+                                  <label
+                                    >እያገለገሉ ነው
+                                    <input
+                                      type="radio"
+                                      name="status7"
+                                      value="1"
+                                      checked
+                                      
+                                    />
+                                  </label>
+                                  <label
+                                    >እያገለገሉ አይደለም
+                                    <input type="radio" name="status7" value="0"/>
+                                  </label>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="charity">
+                              <label
+                                >የፍቅርና ርህራሄ አገልግሎት
+                                <input
+                                  type="checkbox"
+                                  name="charity"
+                                  value="8"
+                                  class="servWhere8"
+                                />
+                                <span class="serv_where" id="servWhereId8">
+                                  <label
+                                    >እያገለገሉ ነው
+                                    <input
+                                      type="radio"
+                                      name="status8"
+                                      value="1"
+                                      checked
+                                    />
+                                  </label>
+                                  <label
+                                    >እያገለገሉ አይደለም
+                                    <input type="radio" name="status8" value="0"/>
+                                  </label>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="eddir">
+                              <label
+                                >የእድር አገልግሎት
+                                <input
+                                  type="checkbox"
+                                  name="eddir"
+                                  class="servWhere9"
+                                  value="9"
+                                />
+                                <span class="serv_where" id="servWhereId9">
+                                  <label
+                                    >እያገለገሉ ነው
+                                    <input
+                                      type="radio"
+                                      name="status9"
+                                      value="1"
+                                      checked
+                                      
+                                    />
+                                  </label>
+                                  <label
+                                    >እያገለገሉ አይደለም
+                                    <input type="radio" name="status9" value="0"/>
+                                  </label>
+                                </span>
+                              </label>
+                            </div>
+                            <div class="elder">
+                              <label
+                                >የሽምግልና አገልግሎት
+                                <input
+                                  type="checkbox"
+                                  name="elder"
+                                  class="servWhere10"
+                                  value="10"
+                                />
+                                <span class="serv_where" id="servWhereId10">
+                                  <label
+                                    >እያገለገሉ ነው
+                                    <input
+                                      type="radio"
+                                      name="status10"
+                                      value="1"
+                                      checked
+                                      
+                                    />
+                                  </label>
+                                  <label
+                                    >እያገለገሉ አይደለም
+                                    <input type="radio" name="status10" value="0" />
+                                  </label>
+                                </span>
+                              </label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="edu_status">ትምህርት ተምረዋል</span>
+                          <label for="yesEdu">አዎ</label>
+                          <input
+                            type="radio"
+                            name="educheck"
+                            id="yesEdu"
+                            value="true"
+                          />
+                          <label for="noEdu">አይ</label>
+                          <input
+                            type="radio"
+                            name="educheck"
+                            id="noEdu"
+                            value="false"
+                            checked
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row learned" id="learned">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="eduStatusList">የትምህርት ደረጃ</label>
+                          <select
+                            name="edu_status_list"
+                            id="eduStatusList"
+                            class="form-control"
+                          >
+                            <option value="የመጀመርያ ደረጃ ትምህርት">የመጀመርያ ደረጃ ትምህርት</option>
+                            <option value="ሁለተኛ ደረጃ ትምህርት">ሁለተኛ ደረጃ ትምህርት</option>
+                            <option value="ዲፕሎማ">ዲፕሎማ</option>
+                            <option value="ሰርተፍኬት">ሰርተፍኬት</option>
+                            <option value="ዲግሪ">ዲግሪ</option>
+                            <option value="ማስተርስ">ማስተርስ</option>
+                            <option value="ዶክትሬት">ዶክትሬት</option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="subOfStudy">የትምህርት ዘርፍ(የምረቃ ፊልድ)*</label>
+                          <input
+                            type="text"
+                            name="sub_of_study"
+                            id="subOfStudy"
+                            class="form-control"
+                            placeholder="የትምህርት ዘርፍ"
+                            maxlength="200"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="workqest"
+                            >ስራ አላቸው?
+                            <label>
+                              አዎ
+                              <input
+                                type="radio"
+                                name="work_stats"
+                                value="true"
+                                id="yesWork"
+                              />
+                            </label>
+                            <label>
+                              አይ
+                              <input
+                                type="radio"
+                                name="work_stats"
+                                value="false"
+                                id="noWork"
+                              />
+                            </label>
+                            <!-- housewife -->
+                            
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row iwork" id="iWork">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label>
+                            የስራ አይነት
+                            <select name="work_type" class="form-control">
+                              <option value="የግል">የግል</option>
+                              <option value="የመንግስት">የመንግስት</option>
+                              <option value="መንግስታዊ ያልሆነ">መንግስታዊ ያልሆነ</option>
+                              <option value="የቤ/ክ አገልጋይ">የቤ/ክ አገልጋይ</option>
+                              <option value="የግል ድርጅት">የግል ድርጅት</option>
+                              <option value="የቤት ሰራተኛ">የቤት ሰራተኛ</option>
+                            </select>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>
+                            የስራ ቦታ
+                            <input
+                              type="text"
+                              name="work_place"
+                              id="workPlace"
+                              maxlength="254"
+                              class="form-control"
+                              placeholder="የስራ ቦታ"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label
+                            >የስራ ሃላፊነት
+                            <input
+                              type="text"
+                              name="responsibility"
+                              id="responsiblity"
+                              maxlength="254"
+                              class="form-control"
+                              placeholder="የስራ ሃላፊነት"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>
+                            የሚጠሩበት ፕሮፌሽን
+                            <input
+                              type="text"
+                              name="profession"
+                              id="profession"
+                              maxlength="254"
+                              class="form-control"
+                              placeholder="የሚጠሩበት ፕሮፌሽን"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>
+                            ቤ/ክ የምትጠቀምበት ችሎታ
+                            <input
+                              type="text"
+                              name="talent"
+                              id="talent"
+                              maxlength="254"
+                              class="form-control"
+                              placeholder="ቤ/ክ የምትጠቀምበት ችሎታ"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <span class="maritialquest">
+                            የጋብቻ ሁኔታ *
+                            <label>
+                              ያገባ
+                              <input type="radio" name="mstats" value="true" />
+                            </label>
+                            <label>
+                              ያላገባ
+                              <input
+                                type="radio"
+                                name="mstats"
+                                value="false"
+                                checked
+                              />
+                            </label>
+                            <label>
+                              መበልት
+                              <input
+                                type="radio"
+                                name="mstats"
+                                value="false"
+                              />
+                            </label>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row maritial_bool" id="maritalStatus">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label>
+                            ማዕረግ
+                            <select
+                              name="s-title"
+                              id="sTitle"
+                              class="form-control"
+                            >
+                              <option value="ato">አቶ</option>
+                              <option value="woizero">ወይዝሮ</option>
+                              <option value="woizerit">ወይዘሪት</option>
+                              <option value="brother">ወንድም</option>
+                              <option value="sister">እህት</option>
+                              <option value="student">ተማሪ</option>
+                              <option value="pastor">መጋቢ</option>
+                              <option value="doctor">ዶክተር</option>
+                            </select>
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label
+                            >ስም *
+                            <input
+                              type="text"
+                              id="sFName"
+                              name="sFName"
+                              maxlength="100"
+                              class="form-control"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label
+                            >የአባት ስም *
+                            <input
+                              type="text"
+                              id="sMName"
+                              name="sMName"
+                              maxlength="100"
+                              class="form-control"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label
+                            >የአያት ስም *
+                            <input
+                              type="text"
+                              id="sLName"
+                              name="sLName"
+                              maxlength="100"
+                              class="form-control"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label
+                            >የጋብቻ ቀን *
+                            <input
+                              type="date"
+                              name="dateOfWedding"
+                              id="dateOfWedding"
+                              class="form-control"
+                            />
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <div class="spause_here" id="spauseHere">
+                            <!-- if they are in any kind of church -->
+                            <span>ባለቤት በወንጌላውያን ቤ/ክ ታቅፈዋል?</span>
+                            <label>
+                              አዎ
+                              <input
+                                type="radio"
+                                name="shere"
+                                value="true"
+                                class="form-control"
+                              />
+                            </label>
+                            <label>
+                              አይ
+                              <input
+                                type="radio"
+                                name="shere"
+                                value="false"
+                                class="form-control"
+                              />
+                            </label>
+                            <div class="ifhere" id="ifHere">
+                              <!-- if they are in this church -->
+                              <span>የዚህች ቤ/ክ አባል ናችው?</span>
+                              <label>
+                                አዎ
+                                <input
+                                  type="radio"
+                                  name="here"
+                                  value="true"
+                                  class="form-control"
+                                />
+                              </label>
+                              <label>
+                                አይ
+                                <input
+                                  type="radio"
+                                  name="here"
+                                  value="false"
+                                  class="form-control"
+                                />
+                              </label>
+                              <!-- if they are not in this church -->
+                              <div class="no_ifhere" id="noIfHere">
+                                <!-- spause where church 100char-->
+                                <label>
+                                  የዚህች ቤ/ክ አባል ካልሆኑ የት ናቸው?
+                                  <input
+                                    type="text"
+                                    id="whereAreThey"
+                                    maxlength="100"
+                                    class="form-control"
+                                  />
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="update ml-auto mr-auto">
+                        <button type="submit" class="btn btn-primary btn-round">
+                          አስገባ
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="footer footer-black footer-white">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="credits ml-auto">
+                <span class="copyright">
+                  ©
+                  <script>
+                    document.write(new Date().getFullYear());
+                  </script>
+                  KKHC IT Team
+                </span>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <!--   Core JS Files   -->
+    <script src="{{url_for('static', filename='assets/js/collapse.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/core/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/core/popper.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/core/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+    <!--  Google Maps Plugin    -->
+
+    <!-- Chart JS -->
+    <script src="{{url_for('static', filename='assets/js/plugins/chartjs.min.js')}}"></script>
+    <!--  Notifications Plugin    -->
+    <script src="{{url_for('static', filename='assets/js/plugins/bootstrap-notify.js')}}"></script>
+    <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+    <script
+      src="{{url_for('static', filename='assets/js/paper-dashboard.min.js')}}"
+      type="text/javascript"
+    ></script>
+    <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+    <!-- <script src="{{url_for('static', filename='assets/demo/demo.js')}}"></script> -->
+  </body>
+</html>

@@ -1,0 +1,225 @@
+* {
+  font-family: "Libre Franklin", sans-serif;
+  font-family: "Noto Sans Ethiopic", sans-serif;
+}
+
+.handicap_desc,
+.service_list,
+.learned,
+.iwork,
+.no_ifhere,
+.ifhere,
+.maritial_bool,
+.neighbourhood_info,
+.why_not,
+.in_church,
+.yes_ifhere,
+.parenthere,
+.pnothere {
+  display: none;
+}
+.card-body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.card-footer {
+  text-align: center;
+}
+.nc-simple-add,
+.nc-bullet-list-67,
+.nc-chart-bar-32 {
+  font-size: 60px;
+}
+.addmember {
+  display: flex;
+  justify-content: center;
+}
+.addmember-size {
+  width: 910px;
+}
+.user-raw {
+  width: 850px;
+}
+.error-msg {
+  color: red;
+}
+.dash-anch {
+  transition: all 0.1s;
+}
+.dash-anch:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px;
+  transform: translateY(-10px);
+  cursor: pointer;
+}
+a:hover {
+  text-decoration-line: none;
+}
+.card label {
+  font-size: 1.25em;
+}
+.hand-radio-flex {
+  padding-top: 15px;
+  margin-top: 15px;
+}
+textarea.form-control {
+  height: 50px;
+}
+.subcity-size {
+  padding-right: 1px;
+}
+.opt-pho-no {
+  padding-left: 1px;
+  padding-right: 30px;
+}
+.pho-no-in {
+  padding-left: 0px;
+}
+.district-padding {
+  padding-left: 10px;
+  padding-right: 15px;
+}
+.house-number-padding {
+  padding-left: 0px;
+}
+.email-input {
+  padding-left: 5px;
+}
+
+/* The container */
+.container1 {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container1 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+/* Create a custom checkbox */
+.checkmark1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+/* On mouse-over, add a grey background color */
+.container1:hover input ~ .checkmark1 {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container1 input:checked ~ .checkmark1 {
+  background-color: #2196f3;
+}
+
+/* Create the checkmark1/indicator (hidden when not checked) */
+.checkmark1:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark1 when checked */
+.container1 input:checked ~ .checkmark1:after {
+  display: block;
+}
+
+/* Style the checkmark1/indicator */
+.container1 .checkmark1:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* radio */
+/* Create a custom radio button */
+.container2 {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container2 input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+.checkmark2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container2:hover input ~ .checkmark2 {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container2 input:checked ~ .checkmark2 {
+  background-color: #2196f3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark2:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container2 input:checked ~ .checkmark2:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container2 .checkmark2:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+}
+.card label {
+    color: black;
+}
+.sidebar .nav li > a, .off-canvas-sidebar .nav li > a {
+    font-size: 17px;
+}
+.card span {
+    font-size: 15px;
+}

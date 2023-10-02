@@ -1,0 +1,31 @@
+* {
+  font-family: "Libre Franklin", sans-serif;
+  font-family: "Noto Sans Ethiopic", sans-serif;
+}
+.card .details-img {
+  overflow: hidden;
+  margin-bottom: 25px;
+  height: auto;
+  display: flex;
+  align-items: center;
+}
+.card-user .image img {
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+.card .avatar {
+  width: 50px;
+  height: 50px;
+}
+.list-group-item {
+  border: none;
+}
+.card label {
+  color: black;
+}
+.sidebar .nav li > a, .off-canvas-sidebar .nav li > a {
+  font-size: 17px;
+}
+.card span {
+  font-size: 15px;
+}
