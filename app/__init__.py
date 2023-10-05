@@ -24,7 +24,7 @@ app.config["MYSQL_DB"] = "kkhc"
 
 # File uploading directory
 
-UPLOAD_FOLDER = 'static/Attachments'
+UPLOAD_FOLDER = 'app/static/Attachments'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 

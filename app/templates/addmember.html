@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <meta charset="utf-8" />
     <link
       rel="apple-touch-icon"
@@ -189,11 +191,11 @@
                 </div>
                 <div class="card-body">
                   <form
-                    action="addmember"
+                    action="addmember_post"
                     method="post"
                     enctype="multipart/form-data"
                   >
-                  <div class="row user-raw">
+                    <div class="row user-raw">
                       <div class="file-input form-group">
                         <div class="mb-3">
                           <label for="formFile" class="form-label"
@@ -1198,121 +1200,11 @@
                     </div>
                     <div class="maritial_bool" id="maritalStatus">
                       <div class="row">
-                        <div class="col-md-1 px-1">
-                          <div class="form-group">
-                            <label for="stitle">ማዕረግ</label>
-                            <select
-                              id="stitle"
-                              name="stitle"
-                              class="form-control"
-                            >
-                              <option value="አቶ">አቶ</option>
-                              <option value="ወይዝሮ">ወይዘሮ</option>
-                              <option value="ወይዘሪት">ወይዘሪት</option>
-                              <option value="ወንድም">ወንድም</option>
-                              <option value="እህት">እህት</option>
-                              <option value="ተማሪ">ተማሪ</option>
-                              <option value="መጋቢ">መጋቢ</option>
-                              <option value="ዶክተር">ዶክተር</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-md-4 px-1">
-                          <div class="form-group">
-                            <label for="sf_name">ስም *</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="sf_name"
-                              name="sfname"
-                              placeholder="ስም"
-                              maxlength="100"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-md-4 px-1">
-                          <div class="form-group">
-                            <label for="sm_name">የአባት ስም *</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="sm_name"
-                              name="smname"
-                              placeholder="የአባት ስም"
-                              maxlength="100"
-                            />
-                          </div>
-                        </div>
-                        <div class="col-md-3 px-1">
-                          <div class="form-group">
-                            <label for="sl_name">የአያት ስም *</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="slname"
-                              name="slname"
-                              placeholder="የአያት ስም"
-                              maxlength="100"
-                            />
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
-                        <div class="col-md-6">
-                          <div class="form-group">
-                            <div class="row">
-                              <div class="col-4">
-                                <label for="merdate"> የጋብቻ </label>
-                                <input
-                                  type="number"
-                                  id="merdate"
-                                  name="merdate"
-                                  min="1"
-                                  max="30"
-                                  step="1"
-                                  class="form-control"
-                                  placeholder="ቀን"
-                                />
-                              </div>
-                              <div class="col--md-4">
-                                <label for="mermonth">ቀን:</label>
-                                <input
-                                  type="number"
-                                  id="mermonth"
-                                  name="mermonth"
-                                  min="1"
-                                  max="12"
-                                  step="1"
-                                  class="form-control"
-                                  placeholder="ወር"
-                                />
-                              </div>
-                              <div class="col-4">
-                                <label for="meryear">ዓ.ም:</label>
-                                <input
-                                  type="number"
-                                  id="meryear"
-                                  name="meryear"
-                                  min="1900"
-                                  max="2099"
-                                  step="1"
-                                  class="form-control"
-                                  placeholder="ዓ.ም"
-                                />
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
                             <div class="spause_here" id="spauseHere">
                               <!-- if they are in any kind of church -->
                               <div class="form-group">
-
                                 <span>ባለቤት በወንጌላውያን ቤ/ክ ታቅፈዋል?</span>
                                 <div
                                   class="custom-control custom-radio custom-control-inline"
@@ -1324,7 +1216,9 @@
                                     id="sHereT"
                                     class="custom-control-input"
                                   />
-                                  <label for="sHereT" class="custom-control-label"
+                                  <label
+                                    for="sHereT"
+                                    class="custom-control-label"
                                     >አዎ</label
                                   >
                                 </div>
@@ -1338,7 +1232,9 @@
                                     id="sHereF"
                                     class="custom-control-input"
                                   />
-                                  <label for="sHereF" class="custom-control-label"
+                                  <label
+                                    for="sHereF"
+                                    class="custom-control-label"
                                     >አይ</label
                                   >
                                 </div>
@@ -1346,9 +1242,8 @@
 
                               <div class="ifhere" id="ifHere">
                                 <!-- if they are in this church -->
-                               
-                                <div class="form-group">
 
+                                <div class="form-group">
                                   <span>የዚህች ቤ/ክ አባል ናችው?</span>
                                   <div
                                     class="custom-control custom-radio custom-control-inline"
@@ -1385,708 +1280,181 @@
                                 </div>
                                 <!-- if they are in this church -->
                                 <div class="yes_ifhere" id="yesIfHere">
-                                  <div class="row file-- form-group">
-                                    <div class="col-md-12 file-input">
-                                      <label for="profilePic" class="form-label">Choose Profile</label>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <label for="search_spause_f_name">ስም *</label>
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          id="search_spause_f_name"
+                                          name="sname"
+                                          list="datalist"
+                                          placeholder="ስም"
+                                          maxlength="100"
+                                        />
+                                        <datalist id="datalist"></datalist>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-4">
+                                      <label for="merdate"> የጋብቻ </label>
                                       <input
-                                        type="file"
-                                        name="profile"
-                                        accept="image/*"
-                                        id="profilePic"
-                                        placeholder="choose a file"
+                                        type="number"
+                                        id="merdate"
+                                        name="merdate"
+                                        min="1"
+                                        max="30"
+                                        step="1"
                                         class="form-control"
+                                        placeholder="ቀን"
                                       />
                                     </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-4">
-                                      <div class="form-group">
-                                        <div class="row">
-                                          <div class="col-4">
-                                            <label for="sdobaptism"
-                                              >የጥምቀት</label
-                                            >
-                                            <input
-                                              type="number"
-                                              id="sdobaptism"
-                                              name="sdobaptism"
-                                              min="1"
-                                              max="30"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ቀን"
-                                            />
-                                          </div>
-                                          <div class="col--md-4">
-                                            <label for="smobaptism">ቀን:</label>
-                                            <input
-                                              type="number"
-                                              id="smobaptism"
-                                              name="smobaptism"
-                                              min="1"
-                                              max="12"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ወር"
-                                            />
-                                          </div>
-                                          <div class="col-5">
-                                            <label for="syobaptism">:</label>
-                                            <input
-                                              type="number"
-                                              id="syobaptism"
-                                              name="syobaptism"
-                                              min="1900"
-                                              max="2099"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ዓ.ም"
-                                            />
-                                          </div>
-                                        </div>
-                                      </div>
+                                    <div class="col--md-4">
+                                      <label for="mermonth">ቀን:</label>
+                                      <input
+                                        type="number"
+                                        id="mermonth"
+                                        name="mermonth"
+                                        min="1"
+                                        max="12"
+                                        step="1"
+                                        class="form-control"
+                                        placeholder="ወር"
+                                      />
                                     </div>
-                                    <div class="col-md-4 px-1">
-                                      <div class="form-group">
-                                        <label for="sbap_where">የጥምቀት ቦታ</label>
-                                        <input
-                                          type="text"
-                                          name="sbap_where"
-                                          id="bap_where"
-                                          maxlength="150"
-                                          class="form-control"
-                                        />
-                                      </div>
-                                    </div>
-                                    <div class="col-md-4 pl-1">
-                                      <div class="form-group">
-                                        <div class="row">
-                                          <div class="col-4">
-                                            <label for="sdomembership"
-                                              >የአባልነት</label
-                                            >
-                                            <input
-                                              type="number"
-                                              id="sdomembership"
-                                              name="sdomembership"
-                                              min="1"
-                                              max="30"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ቀን"
-                                            />
-                                          </div>
-                                          <div class="col--md-4">
-                                            <label for="smomebership"
-                                              >ቀን:</label
-                                            >
-                                            <input
-                                              type="number"
-                                              id="smomebership"
-                                              name="smomebership"
-                                              min="1"
-                                              max="12"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ወር"
-                                            />
-                                          </div>
-                                          <div class="col-5">
-                                            <label for="syomembership">:</label>
-                                            <input
-                                              type="number"
-                                              id="syomembership"
-                                              name="syomembership"
-                                              min="1900"
-                                              max="2099"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ዓ.ም"
-                                            />
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <span>በቤተ ክርስትያን አገልግሎት ውስጥ አሉ?</span>
-                                        <div
-                                          class="custom-control custom-radio custom-control-inline"
-                                        >
-                                          <input
-                                            type="radio"
-                                            name="s_service"
-                                            value="true"
-                                            id="syesService"
-                                            class="custom-control-input"
-                                          />
-                                          <label
-                                            for="syesService"
-                                            class="custom-control-label"
-                                            >አዎ</label
-                                          >
-                                        </div>
-                                        <div
-                                          class="custom-control custom-radio custom-control-inline"
-                                        >
-                                          <input
-                                            type="radio"
-                                            name="s_service"
-                                            value="false"
-                                            id="snoService"
-                                            class="custom-control-input"
-                                            checked
-                                          />
-                                          <label
-                                            for="snoService"
-                                            class="custom-control-label"
-                                            >አይ</label
-                                          >
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="service_list" id="sServiceId">
-                                    <h4>በየትኛው የአገልግሎት ዘርፍ ውስጥ ይሳተፋሉ?</h4>
-                                    <div class="row">
-                                      <div class="col-md-4">
-                                        <div class="form-group">
-                                          <label class="container1"
-                                            >የዝማሬ አገልግሎት
-                                            <input
-                                              type="checkbox"
-                                              name="ssinger"
-                                            />
-                                            <span class="checkmark1"></span>
-                                          </label>
-                                          <label class="container1"
-                                            >የልጆች አገልግሎት
-                                            <input
-                                              type="checkbox"
-                                              name="schildren"
-                                            />
-                                            <span class="checkmark1"></span>
-                                          </label>
-                                          <label class="container1"
-                                            >የጸሎት አገልግሎት
-                                            <input
-                                              type="checkbox"
-                                              name="sprayer"
-                                            />
-                                            <span class="checkmark1"></span>
-                                          </label>
-                                          <label class="container1"
-                                            >የወጣቶች አገልግሎት
-                                            <input
-                                              type="checkbox"
-                                              name="syouth"
-                                            />
-                                            <span class="checkmark1"></span>
-                                          </label>
-                                          <label class="container1"
-                                            >የእህቶች አገልግሎት
-                                            <input
-                                              type="checkbox"
-                                              name="ssisters"
-                                            />
-                                            <span class="checkmark1"></span>
-                                          </label>
-                                          <label class="container1"
-                                            >የወንጌል ስርጭት አገልግሎት
-                                            <input
-                                              type="checkbox"
-                                              name="soutreach"
-                                            />
-                                            <span class="checkmark1"></span>
-                                          </label>
-                                          <label class="container1"
-                                            >የዲያቆን አገልግሎት
-                                            <input
-                                              type="checkbox"
-                                              name="sdeacon"
-                                            />
-                                            <span class="checkmark1"></span>
-                                          </label>
-                                          <label class="container1"
-                                            >የፍቅርና ርህራሄ አገልግሎት
-                                            <input
-                                              type="checkbox"
-                                              name="scharity"
-                                            />
-                                            <span class="checkmark1"></span>
-                                          </label>
-                                          <label class="container1"
-                                            >የእድር አገልግሎት
-                                            <input
-                                              type="checkbox"
-                                              name="seddir"
-                                            />
-                                            <span class="checkmark1"></span>
-                                          </label>
-                                          <label class="container1"
-                                            >የሽምግልና አገልግሎት
-                                            <input
-                                              type="checkbox"
-                                              name="selder"
-                                            />
-                                            <span class="checkmark1"></span>
-                                          </label>
-                                        </div>
-                                      </div>
-                                      <div class="col-md-4">
-                                        <label class="container2"
-                                          >እያገለገሉ ነው
-                                          <input
-                                            type="radio"
-                                            name="s_status1"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ ነው
-                                          <input
-                                            type="radio"
-                                            name="s_status2"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ ነው
-                                          <input
-                                            type="radio"
-                                            name="s_status3"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ ነው
-                                          <input
-                                            type="radio"
-                                            name="s_status4"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ ነው
-                                          <input
-                                            type="radio"
-                                            name="s_status5"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ ነው
-                                          <input
-                                            type="radio"
-                                            name="s_status6"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ ነው
-                                          <input
-                                            type="radio"
-                                            name="s_status7"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ ነው
-                                          <input
-                                            type="radio"
-                                            name="s_status8"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ ነው
-                                          <input
-                                            type="radio"
-                                            name="s_status9"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ ነው
-                                          <input
-                                            type="radio"
-                                            name="s_status10"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                      </div>
-                                      <div class="col-md-4">
-                                        <label class="container2"
-                                          >እያገለገሉ አይደለም
-                                          <input
-                                            type="radio"
-                                            checked="checked"
-                                            name="s_status1"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ አይደለም
-                                          <input
-                                            type="radio"
-                                            name="s_status2"
-                                            checked="checked"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ አይደለም
-                                          <input
-                                            type="radio"
-                                            name="s_status3"
-                                            checked="checked"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ አይደለም
-                                          <input
-                                            type="radio"
-                                            name="s_status4"
-                                            checked="checked"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ አይደለም
-                                          <input
-                                            type="radio"
-                                            name="s_status5"
-                                            checked="checked"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ አይደለም
-                                          <input
-                                            type="radio"
-                                            name="s_status6"
-                                            checked="checked"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ አይደለም
-                                          <input
-                                            type="radio"
-                                            name="s_status7"
-                                            checked="checked"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ አይደለም
-                                          <input
-                                            type="radio"
-                                            name="s_status8"
-                                            checked="checked"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ አይደለም
-                                          <input
-                                            type="radio"
-                                            name="s_status9"
-                                            checked="checked"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                        <label class="container2"
-                                          >እያገለገሉ አይደለም
-                                          <input
-                                            type="radio"
-                                            name="s_status10"
-                                            checked="checked"
-                                          />
-                                          <span class="checkmark2"></span>
-                                        </label>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <span class="edu_status"
-                                          >ትምህርት ተምረዋል</span
-                                        >
-                                        <div
-                                          class="custom-control custom-radio custom-control-inline"
-                                        >
-                                          <input
-                                            type="radio"
-                                            id="sYesEdu"
-                                            name="seducheck"
-                                            class="custom-control-input"
-                                            value="true"
-                                          />
-                                          <label
-                                            class="custom-control-label"
-                                            for="sYesEdu"
-                                            >አዎ</label
-                                          >
-                                        </div>
-                                        <div
-                                          class="custom-control custom-radio custom-control-inline"
-                                        >
-                                          <input
-                                            type="radio"
-                                            id="sNoEdu"
-                                            name="seducheck"
-                                            class="custom-control-input"
-                                            value="false"
-                                          />
-                                          <label
-                                            class="custom-control-label"
-                                            for="sNoEdu"
-                                            >አይ</label
-                                          >
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row learned" id="slearned">
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                        <label for="seduStatusList"
-                                          >የትምህርት ደረጃ</label
-                                        >
-                                        <select
-                                          name="s_edu_status_list"
-                                          id="seduStatusList"
-                                          class="form-control"
-                                        >
-                                          <option value="elementary">
-                                            የመጀመርያ ደረጃ ትምህርት
-                                          </option>
-                                          <option value="highschool">
-                                            ሁለተኛ ደረጃ ትምህርት
-                                          </option>
-                                          <option value="diploma">ዲፕሎማ</option>
-                                          <option value="certeficate">
-                                            ሰርተፍኬት
-                                          </option>
-                                          <option value="degree">ዲግሪ</option>
-                                          <option value="masters">ማስተርስ</option>
-                                          <option value="phd">ዶክትሬት</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                        <label for="s_subOfStudy"
-                                          >የትምህርት ዘርፍ(የምረቃ ፊልድ)*</label
-                                        >
-                                        <input
-                                          type="text"
-                                          name="s_sub_of_study"
-                                          id="ssubOfStudy"
-                                          class="form-control"
-                                          placeholder="የትምህርት ዘርፍ"
-                                          maxlength="200"
-                                        />
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-md-12">
-                                      <div class="form-group">
-                                        <span class="workqest">ስራ አላቸው?</span>
-                                        <div
-                                          class="custom-control custom-radio custom-control-inline"
-                                        >
-                                          <input
-                                            type="radio"
-                                            name="s_work_stats"
-                                            value="true"
-                                            id="syesWork"
-                                            class="custom-control-input"
-                                          />
-                                          <label
-                                            for="syesWork"
-                                            class="custom-control-label"
-                                          >
-                                            አዎ
-                                          </label>
-                                        </div>
-                                        <div
-                                          class="custom-control custom-radio custom-control-inline"
-                                        >
-                                          <input
-                                            type="radio"
-                                            name="s_work_stats"
-                                            value="false"
-                                            id="snoWork"
-                                            class="custom-control-input"
-                                          />
-                                          <label
-                                            for="snoWork"
-                                            class="custom-control-label"
-                                          >
-                                            አይ
-                                          </label>
-                                        </div>
-                                        <!-- housewife -->
-                                        <div
-                                          class="custom-control custom-radio custom-control-inline"
-                                        >
-                                          <input
-                                            type="radio"
-                                            name="s_work_stats"
-                                            value="false"
-                                            id="shousewife"
-                                            class="custom-control-input"
-                                          />
-                                          <label
-                                            for="shousewife"
-                                            class="custom-control-label"
-                                          >
-                                            የቤት እመቤት
-                                          </label>
-                                        </div>
-                                        <!-- student -->
-                                        <div
-                                          class="custom-control custom-radio custom-control-inline"
-                                        >
-                                          <input
-                                            type="radio"
-                                            name="s_work_stats"
-                                            value="false"
-                                            id="sstudent"
-                                            class="custom-control-input"
-                                          />
-                                          <label
-                                            for="sstudent"
-                                            class="custom-control-label"
-                                          >
-                                            ተማሪ
-                                          </label>
-                                        </div>
-                                        <!-- retiered -->
-                                        <div
-                                          class="custom-control custom-radio custom-control-inline"
-                                        >
-                                          <input
-                                            type="radio"
-                                            name="s_work_stats"
-                                            value="false"
-                                            id="sretired"
-                                            class="custom-control-input"
-                                          />
-                                          <label
-                                            for="sretired"
-                                            class="custom-control-label"
-                                          >
-                                            ጡረተኛ
-                                          </label>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </div>
-                                  <div class="iwork" id="siWork">
-                                    <div class="row">
-                                      <div class="col-md-12">
-                                        <div class="form-group">
-                                          <div class="row">
-                                            <div class="col-md-3">
-                                              <label for="workType">
-                                                የስራ አይነት
-                                              </label>
-                                              <select
-                                                name="swork_type"
-                                                class="form-control"
-                                                id="workType"
-                                              >
-                                                <option value="private">
-                                                  የግል
-                                                </option>
-                                                <option value="govt">
-                                                  የመንግስት
-                                                </option>
-                                                <option value="no_gov">
-                                                  መንግስታዊ ያልሆነ
-                                                </option>
-                                                <option value="church">
-                                                  የቤ/ክ አገልጋይ
-                                                </option>
-                                                <option value="ngo">
-                                                  የግል ድርጅት
-                                                </option>
-                                                <option value="housemade">
-                                                  የቤት ሰራተኛ
-                                                </option>
-                                              </select>
-                                            </div>
-                                            <div class="col-md-5">
-                                              <label for="workPlace">
-                                                የስራ ቦታ
-                                              </label>
-                                              <input
-                                                type="text"
-                                                name="swork_place"
-                                                id="workPlace"
-                                                maxlength="254"
-                                                class="form-control"
-                                                placeholder="የስራ ቦታ"
-                                              />
-                                            </div>
-
-                                            <div class="col-md-4">
-                                              <label for="responsiblity"
-                                                >የስራ ሃላፊነት
-                                              </label>
-                                              <input
-                                                type="text"
-                                                name="sresponsiblity"
-                                                id="responsiblity"
-                                                maxlength="254"
-                                                class="form-control"
-                                                placeholder="የስራ ሃላፊነት"
-                                              />
-                                            </div>
-                                          </div>
-                                          <div class="row">
-                                            <div class="col-md-6">
-                                              <label for="profession">
-                                                የሚጠሩበት ፕሮፌሽን
-                                              </label>
-                                              <input
-                                                type="text"
-                                                name="sprofession"
-                                                id="profession"
-                                                maxlength="254"
-                                                class="form-control"
-                                                placeholder="የሚጠሩበት ፕሮፌሽን"
-                                              />
-                                            </div>
-                                            <div class="col-md-6">
-                                              <label for="talent">
-                                                ቤ/ክ የምትጠቀምበት ችሎታ
-                                              </label>
-                                              <input
-                                                type="text"
-                                                name="stalent"
-                                                id="talent"
-                                                maxlength="254"
-                                                class="form-control"
-                                                placeholder="ቤ/ክ የምትጠቀምበት ችሎታ"
-                                              />
-                                            </div>
-                                          </div>
-                                        </div>
-                                      </div>
+                                    <div class="col-4">
+                                      <label for="meryear">ዓ.ም:</label>
+                                      <input
+                                        type="number"
+                                        id="meryear"
+                                        name="meryear"
+                                        min="1900"
+                                        max="2099"
+                                        step="1"
+                                        class="form-control"
+                                        placeholder="ዓ.ም"
+                                      />
                                     </div>
                                   </div>
                                 </div>
                                 <div class="no_ifhere" id="noIfHere">
                                   <!-- spause where church 100char-->
+                                  
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-1 px-1">
+                                      <div class="form-group">
+                                        <label for="stitle">ማዕረግ</label>
+                                        <select
+                                          id="stitle"
+                                          name="stitle"
+                                          class="form-control"
+                                        >
+                                          <option value="አቶ">አቶ</option>
+                                          <option value="ወይዝሮ">ወይዘሮ</option>
+                                          <option value="ወይዘሪት">ወይዘሪት</option>
+                                          <option value="ወንድም">ወንድም</option>
+                                          <option value="እህት">እህት</option>
+                                          <option value="ተማሪ">ተማሪ</option>
+                                          <option value="መጋቢ">መጋቢ</option>
+                                          <option value="ዶክተር">ዶክተር</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="col-md-4 px-1">
+                                      <div class="form-group">
+                                        <label for="sf_name">ስም *</label>
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          id="sf_name"
+                                          name="sfname"
+                                          placeholder="ስም"
+                                          maxlength="100"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="col-md-4 px-1">
+                                      <div class="form-group">
+                                        <label for="sm_name">የአባት ስም *</label>
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          id="sm_name"
+                                          name="smname"
+                                          placeholder="የአባት ስም"
+                                          maxlength="100"
+                                        />
+                                      </div>
+                                    </div>
+                                    <div class="col-md-3 px-1">
+                                      <div class="form-group">
+                                        <label for="sl_name">የአያት ስም *</label>
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          id="slname"
+                                          name="slname"
+                                          placeholder="የአያት ስም"
+                                          maxlength="100"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row">
+                                    <div class="col-md-6">
+                                      <div class="form-group">
+                                        <div class="row">
+                                          <div class="col-4">
+                                            <label for="merdate"> የጋብቻ </label>
+                                            <input
+                                              type="number"
+                                              id="merdate"
+                                              name="merdate"
+                                              min="1"
+                                              max="30"
+                                              step="1"
+                                              class="form-control"
+                                              placeholder="ቀን"
+                                            />
+                                          </div>
+                                          <div class="col--md-4">
+                                            <label for="mermonth">ቀን:</label>
+                                            <input
+                                              type="number"
+                                              id="mermonth"
+                                              name="mermonth"
+                                              min="1"
+                                              max="12"
+                                              step="1"
+                                              class="form-control"
+                                              placeholder="ወር"
+                                            />
+                                          </div>
+                                          <div class="col-4">
+                                            <label for="meryear">ዓ.ም:</label>
+                                            <input
+                                              type="number"
+                                              id="meryear"
+                                              name="meryear"
+                                              min="1900"
+                                              max="2099"
+                                              step="1"
+                                              class="form-control"
+                                              placeholder="ዓ.ም"
+                                            />
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
                                   <label>
                                     የዚህች ቤ/ክ አባል ካልሆኑ የት ናቸው?
                                     <input
@@ -2134,6 +1502,25 @@
         </footer>
       </div>
     </div>
+    <script>
+      $(document).ready(function(){
+          $("#search_spause_f_name").on("input", function(e){
+              $("#datalist").empty();
+              $.ajax({
+                  method: "post",
+                  url: "/livesearch",
+                  data: {text: $("#search_spause_f_name").val()},
+                  success: function(res){
+                      $.each(res, function(index, value){
+                          var option = $("<option>").text(value.id + " - " + value.firstname + " " + value.middlename + " " + value.lastname);
+                          
+                          $("#datalist").append(option);
+                      });
+                  }
+              });
+          });
+      });
+  </script>
     <!--   Core JS Files   -->
     <script src="{{url_for('static', filename='assets/js/collapse.js')}}"></script>
     <script src="{{url_for('static', filename='assets/js/core/jquery.min.js')}}"></script>
