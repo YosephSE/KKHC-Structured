@@ -189,8 +189,11 @@
                           {% set pic = 'Attachments/' + member[0]|string + '.jpg' %}
                           {% set url = 'member/' + member[0]|string %}
                           
-
-                          <td><img src="{{ url_for('static', filename=pic) }}" class="img-circle img-no-padding img-responsive avatar" alt="../static/img/user.png" onerror="this.onerror=null;this.src=this.alt;" id="foo"></td>
+                          <td>
+                            <span class='pimage'>
+                              <img src="{{ url_for('static', filename=pic) }}" alt="../static/img/user.png" onerror="this.onerror=null;this.src=this.alt;" id="foo">
+                            </span>
+                          </td>
                           <td><a href="{{url}}">{{member[1] +' '+ member[2] +' '+ member[3]}}</a></td>
                           <td>{{member[4]}}</td>
                           <td>{{member[5]}}</td>

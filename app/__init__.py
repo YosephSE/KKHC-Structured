@@ -9,15 +9,15 @@ app.config['SESSION_COOKIE_NAME'] = 'ID'
 # app.config['SESSION_COOKIE_SAMESITE'] = 'Lax'
 # app.config['SESSION_PERMANENT'] = False
 # # Connect to MYSQL database
-# app.config['MYSQL_HOST'] = 'sql8.freesqldatabase.com'
-# app.config['MYSQL_USER'] = 'sql8649009'
-# app.config['MYSQL_DB'] = 'sql8649009'
-# app.config['MYSQL_PASSWORD'] = 'kA2XXymF4v'
-# app.config['MYSQL_PORT'] = 3306
-app.config["MYSQL_HOST"] = "localhost"
-app.config["MYSQL_USER"] = "Yoseph"
-app.config["MYSQL_PASSWORD"] = "1212"
-app.config["MYSQL_DB"] = "kkhc"
+app.config['MYSQL_HOST'] = 'sql11.freesqldatabase.com'
+app.config['MYSQL_USER'] = 'sql11652095'
+app.config['MYSQL_DB'] = 'sql11652095'
+app.config['MYSQL_PASSWORD'] = 'f6uJ7zZKlm'
+app.config['MYSQL_PORT'] = 3306
+# app.config["MYSQL_HOST"] = "localhost"
+# app.config["MYSQL_USER"] = "Yoseph"
+# app.config["MYSQL_PASSWORD"] = "1212"
+# app.config["MYSQL_DB"] = "kkhc"
 # app.config["MYSQL_CURSORCLASS"] = "DictCursor"
 
 

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -143,26 +142,6 @@
               <span class="navbar-toggler-bar navbar-kebab"></span>
               <span class="navbar-toggler-bar navbar-kebab"></span>
             </button>
-            <div
-              class="collapse navbar-collapse justify-content-end"
-              id="navigation"
-            >
-              <form>
-                <div class="input-group no-border">
-                  <input
-                    type="text"
-                    value=""
-                    class="form-control"
-                    placeholder="መፈለግያ..."
-                  />
-                  <div class="input-group-append">
-                    <div class="input-group-text">
-                      <i class="nc-icon nc-zoom-split"></i>
-                    </div>
-                  </div>
-                </div>
-              </form>
-            </div>
           </div>
         </nav>
         <!-- End Navbar -->
@@ -174,23 +153,23 @@
                   <h5 class="card-title">የልጆች መጨመርያ ፎርም</h5>
                 </div>
                 {% for message in get_flashed_messages() %}
-                  <div
-                    class="alert alert-warning alert-dismissible fade show"
-                    role="alert"
+                <div
+                  class="alert alert-warning alert-dismissible fade show"
+                  role="alert"
+                >
+                  {{message}}
+                  <button
+                    type="button"
+                    class="close"
+                    data-dismiss="alert"
+                    aria-label="Close"
                   >
-                    {{message}}
-                    <button
-                      type="button"
-                      class="close"
-                      data-dismiss="alert"
-                      aria-label="Close"
-                    >
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  {% endfor %}
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                {% endfor %}
                 <div class="card-body">
-                  <form method="post" action="/addchild_post">
+                  <form method="post" action="/addchild">
                     <div class="row user-raw">
                       <div class="col-md-12">
                         <div class="form-group">
@@ -243,7 +222,7 @@
                     </div>
                     <div class="row user-row">
                       <div class="col-md-1 px-1">
-                        <div class="row">
+                        <div class="row form-group">
                           <div class="col-md-12">
                             <label for="sex">ጾታ</label>
                             <select name="sex" id="sex" class="form-control">
@@ -254,7 +233,7 @@
                         </div>
                       </div>
                       <div class="col-md-4">
-                        <div class="row">
+                        <div class="row form-group">
                           <div class="col-4">
                             <label for="dob">ልደት ቀን:</label>
                             <input
@@ -269,7 +248,7 @@
                               required
                             />
                           </div>
-                          <div class="col--md-4">
+                          <div class="col-4">
                             <label for="mob">ወር:</label>
                             <input
                               type="number"
@@ -283,7 +262,7 @@
                               required
                             />
                           </div>
-                          <div class="col-5">
+                          <div class="col--md-4">
                             <label for="yob">ዓ.ም:</label>
                             <input
                               type="number"
@@ -299,165 +278,17 @@
                           </div>
                         </div>
                       </div>
-                      
-                        
-                          <!-- <div class="form-group">
-                            <span class="handicap">የአካል ጉዳት</span>
-                            <div
-                              class="custom-control custom-radio custom-control-inline"
-                            >
-                              <input
-                                type="radio"
-                                id="yes"
-                                name="handicap"
-                                value="true"
-                                class="custom-control-input"
-                              />
-                              <label for="yes" class="custom-control-label"
-                                >አዎ</label
-                              >
-                            </div>
-                            <div
-                              class="custom-control custom-radio custom-control-inline"
-                            >
-                              <input
-                                type="radio"
-                                id="no"
-                                name="handicap"
-                                value="false"
-                                class="custom-control-input"
-                                checked
-                              />
-                              <label for="no" class="custom-control-label"
-                                >አይ</label
-                              >
-                            </div>
-                          </div> -->
-                        
+
                       
                     </div>
-                    <!-- <div class="row user-row">
-                      <div class="col-md-12 px-1">
-                        <div id="handicapDescription" class="handicap_desc">
-                          <label for="description">የአካል ጉዳት አይነት:</label>
-                          <textarea
-                            name="description"
-                            id="description"
-                            class="form-control textarea"
-                            maxlength="250"
-                          ></textarea>
-                        </div>
-                      </div>
-                    </div> -->
-                    <!-- address staff -->
-                    <!-- <div class="row user-raw">
-                      <div class="col-md-4 px-1">
-                        <div class="row">
-                          <div class="col-md-4 subcity-size">
-                            <div class="form-group">
-                              <label for="subcity">ክፍለ-ከተማ *</label>
-                              <select
-                                id="subcity"
-                                name="subcity"
-                                class="form-control"
-                              >
-                                <option value="lemikura">ለሚ ኩራ</option>
-                                
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-md-4 district-padding">
-                            <div class="form-group">
-                              <label for="district">ወረዳ *</label>
-                              <select
-                                id="district"
-                                name="district"
-                                class="form-control"
-                              >
-                                <option value="1">1</option>
-                               
-                              </select>
-                            </div>
-                          </div>
-                          <div class="col-md-4 house-number-padding">
-                            <div class="form-group">
-                              <label for="house_no">የቤት ቁጥር</label>
-                              <input
-                                type="text"
-                                id="house_no"
-                                name="house_no"
-                                placeholder="የቤት ቁጥር"
-                                maxlength="10"
-                                class="form-control"
-                              />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="col-md-4">
-                        <div class="form-group">
-                          <label for="other_name">ልዩ መጠርያ *</label>
-                          <input
-                            type="text"
-                            id="other_name"
-                            name="other_name"
-                            class="form-control"
-                            required
-                          />
-                        </div>
-                      </div>
-                      
-                      <div class="col-md-4 email-input">
-                        <div class="form-group">
-                          <label>ኢ-ሜይል</label>
-                          <input
-                            type="email"
-                            name="email"
-                            class="form-control"
-                            placeholder="ኢ-ሜይል"
-                            required
-                          />
-                        </div>
-                      </div>
-                    </div> -->
-                    <!-- phone number -->
-                    <!-- <div class="col-md-12 px-1">
-                      <div class="row">
-                        <div class="col-md-2 opt-pho-no">
-                          <div class="form-group">
-                            <label for="countryCode1">*</label>
-                            <select
-                              id="countryCode1"
-                              name="countryCode"
-                              class="form-control"
-                            >
-                              <option value="eth">+251</option>
-                              
-                            </select>
-                          </div>
-                        </div>
-                        <div class="col-md-6 pho-no-in">
-                          <div class="form-group">
-                            <span class="phone">
-                              <label for="phoneNumber1">ስልክ ቁጥር</label>
-                              <input
-                                type="tel"
-                                id="phoneNumber1"
-                                name="phoneNumber"
-                                class="form-control"
-                                pattern="[0-9]{9}"
-                                required
-                              />
-                              <p class="error-msg" id="phno-err-msg1"></p>
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                    </div> -->
+                    
+                    
                     <div class="row">
                       <div class="col-md-12">
                         <div class="form-group">
-                          <span class="edu_status">የልጆች ወላጆች(አሳዳጊ) በቤተክርስትያን ውስጥ ናቸው?</span>
+                          <span class="edu_status"
+                            >የልጆች ወላጆች(አሳዳጊ) በቤተክርስትያን ውስጥ ናቸው?</span
+                          >
                           <div
                             class="custom-control custom-radio custom-control-inline"
                           >
@@ -494,7 +325,7 @@
                         <div class="form-group">
                           <label for="parent1">የአባት ስም</label>
                           <input
-                          type="text"
+                            type="text"
                             name="parent1_fo_key"
                             id="parent1"
                             class="form-control"
@@ -534,7 +365,6 @@
                                   placeholder="ስም"
                                   maxlength="100"
                                 />
-
                               </div>
                             </div>
                             <div class="col-md-4 px-1">
@@ -547,7 +377,6 @@
                                   name="father_n"
                                   placeholder="የአባት ስም"
                                   maxlength="100"
-                                  
                                 />
                               </div>
                             </div>
@@ -561,72 +390,81 @@
                                   name="parent_church"
                                   placeholder="የአያት ስም"
                                   maxlength="100"
-                                  
                                 />
                               </div>
                             </div>
                             <!-- <div class="row"> -->
-                              <div class="col-md-12">
-                                <div class="row">
-                                  <div class="col-md-2 opt-pho-no">
-                                    <div class="form-group">
-                                      <label for="mcountryCode1">፡</label>
-                                      <select
-                                        id="mcountryCode1"
-                                        name="countryCode"
-                                        class="form-control"
+                            <div class="col-md-12">
+                              <div class="row">
+                                <div class="col-md-2 opt-pho-no">
+                                  <div class="form-group">
+                                    <label for="mcountryCode1">፡</label>
+                                    <select
+                                      id="mcountryCode1"
+                                      name="countryCode"
+                                      class="form-control"
+                                    >
+                                      <option value="eth">+251</option>
+                                      <!-- Add more options as needed -->
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-4 pho-no-in">
+                                  <div class="form-group">
+                                    <span class="phone">
+                                      <label for="mphoneNumber1"
+                                        >የእናት ስልክ ቁጥር*:</label
                                       >
-                                        <option value="eth">+251</option>
-                                        <!-- Add more options as needed -->
-                                      </select>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-4 pho-no-in">
-                                    <div class="form-group">
-                                      <span class="phone">
-                                        <label for="mphoneNumber1">የእናት ስልክ ቁጥር*:</label>
-                                        <input
-                                          type="tel"
-                                          id="mphoneNumber1"
-                                          name="mphoneNumber"
-                                          class="form-control"
-                                          pattern="[0-9]{9}"
-                                          maxlength="9"
-                                        />
-                                        <p class="error-msg" id="phno-err-msg1"></p>
-                                      </span>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-2">
-                                    <div class="form-group">
-                                      <label for="fcountryCode2">፡</label>
-                                      <select
-                                        id="fcountryCode2"
-                                        name="countryCode"
+                                      <input
+                                        type="tel"
+                                        id="mphoneNumber1"
+                                        name="mphoneNumber"
                                         class="form-control"
-                                      >
-                                        <option value="eth">+251</option>
-                                      </select>
-                                    </div>
+                                        pattern="[0-9]{9}"
+                                        maxlength="9"
+                                      />
+                                      <p
+                                        class="error-msg"
+                                        id="phno-err-msg1"
+                                      ></p>
+                                    </span>
                                   </div>
-                                  <div class="col-md-4">
-                                    <div class="form-group">
-                                      <span class="phone">
-                                        <label for="fphoneNumber2">የአባት ስልክ ቁጥር*:</label>
-                                        <input
-                                          type="tel"
-                                          id="fphoneNumber2"
-                                          name="fphoneNumber"
-                                          maxlength="9"
-                                          class="form-control"
-                                          pattern="[0-9]{9}"
-                                        />
-                                        <p class="error-msg" id="phno-err-msg2"></p>
-                                      </span>
-                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                  <div class="form-group">
+                                    <label for="fcountryCode2">፡</label>
+                                    <select
+                                      id="fcountryCode2"
+                                      name="countryCode"
+                                      class="form-control"
+                                    >
+                                      <option value="eth">+251</option>
+                                    </select>
+                                  </div>
+                                </div>
+                                <div class="col-md-4">
+                                  <div class="form-group">
+                                    <span class="phone">
+                                      <label for="fphoneNumber2"
+                                        >የአባት ስልክ ቁጥር*:</label
+                                      >
+                                      <input
+                                        type="tel"
+                                        id="fphoneNumber2"
+                                        name="fphoneNumber"
+                                        maxlength="9"
+                                        class="form-control"
+                                        pattern="[0-9]{9}"
+                                      />
+                                      <p
+                                        class="error-msg"
+                                        id="phno-err-msg2"
+                                      ></p>
+                                    </span>
                                   </div>
                                 </div>
                               </div>
+                            </div>
                             <!-- </div> -->
                           </div>
                         </div>
@@ -637,7 +475,7 @@
                         <div class="form-group">
                           <label for="DVBSLevel">የDVBS ክፍል</label>
                           <input
-                          type="text"
+                            type="text"
                             name="dvbs_edu_status_list"
                             id="DVBSLevel"
                             class="form-control"
@@ -705,44 +543,60 @@
     ></script>
     <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
     <script src="{{ url_for('static', filename='assets/demo/demo.js') }}"></script>
-    </body>
-    <script>
-      $(document).ready(function(){
-          $("#parent1").on("input", function(e){
-              $("#datalist").empty();
-              $.ajax({
-                  method: "post",
-                  url: "/livesearch",
-                  data: {text: $("#parent1").val()},
-                  success: function(res){
-                      $.each(res, function(index, value){
-                          var option = $("<option>").text(value.id + " - " + value.firstname + " " + value.middlename + " " + value.lastname);
-                          
-                          $("#datalist").append(option);
-                      });
-                  }
-              });
-          });
+  </body>
+  <script>
+    $(document).ready(function () {
+      $("#parent1").on("input", function (e) {
+        $("#datalist").empty();
+        $.ajax({
+          method: "post",
+          url: "/livesearch",
+          data: { text: $("#parent1").val() },
+          success: function (res) {
+            $.each(res, function (index, value) {
+              var option = $("<option>").text(
+                value.id +
+                  " - " +
+                  value.firstname +
+                  " " +
+                  value.middlename +
+                  " " +
+                  value.lastname
+              );
+
+              $("#datalist").append(option);
+            });
+          },
+        });
       });
+    });
   </script>
-    <script>
-      $(document).ready(function(){
-          $("#parent2").on("input", function(e){
-              $("#datalist2").empty();
-              $.ajax({
-                  method: "post",
-                  url: "/livesearch",
-                  data: {text: $("#parent2").val()},
-                  success: function(res){
-                      $.each(res, function(index, value){
-                          var option = $("<option>").text(value.id + " - " + value.firstname + " " + value.middlename + " " + value.lastname);
-                          
-                          $("#datalist2").append(option);
-                      });
-                  }
-              });
-          });
+  <script>
+    $(document).ready(function () {
+      $("#parent2").on("input", function (e) {
+        $("#datalist2").empty();
+        $.ajax({
+          method: "post",
+          url: "/livesearch",
+          data: { text: $("#parent2").val() },
+          success: function (res) {
+            $.each(res, function (index, value) {
+              var option = $("<option>").text(
+                value.id +
+                  " - " +
+                  value.firstname +
+                  " " +
+                  value.middlename +
+                  " " +
+                  value.lastname
+              );
+
+              $("#datalist2").append(option);
+            });
+          },
+        });
       });
+    });
   </script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </html>
