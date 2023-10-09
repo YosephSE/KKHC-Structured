@@ -159,13 +159,11 @@ def addmember_post():
             if 'elder' in request.form:
                 services[request.form["elder"]] = request.form['status10']
         educheck = request.form["educheck"]
-        print(educheck)
+        
         if educheck == 'true':
             level = request.form["edu_status_list"]
             field = request.form["sub_of_study"]
-            print(level, field)
-        else:
-            print("NO edu")
+
         work_stats = request.form["work_stats"]
         if work_stats == 'true':
             work_stats = 1
@@ -174,14 +172,23 @@ def addmember_post():
             responsibility = request.form["responsiblity"]
             profession = request.form['profession']
             talent = request.form["talent"]
-            print(work_stats, work_type, work_place, responsibility, profession, talent)
         else:
             work_stats = 0
+        union = request.form['vunion']
         mstats = request.form['mstats']
         if mstats == "true":
-            sinchurch = request.form['sinchurch']
             here = request.form['here']
-            spouse = request.form['sname']
+            merdate = request.form['merdate']
+            mermonth = request.form['mermonth']
+            meryear = request.form['meryear']
+            if here == "true":
+                spouse = request.form['sname']
+                spouse = spouse[0:spouse.index(' ')]
+            else:
+                stitle = request.form['stitle']
+                sfname = request.form['sfname']
+                smname = request.form['smname']
+                schurch = request.form['schurch']
     except KeyError as e:
         flash(f"Missing or incorrect form field: {e}")
         return redirect(url_for('addmember'))
@@ -198,6 +205,7 @@ def addmember_post():
         userid = cur.fetchall()[0][0]
         cur.execute("INSERT INTO churchinfo (memberid, baptizmdate, baptizmmonth, baptizmyear, baptizedwhere, dateofmembership, monthofmembership, yearofmembership, churchrelationship) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)", (userid, dobaptism, mobaptism, yobaptism, bap_where, domembership, momembership, yomembership, inchurch))
         mysql.connection.commit()
+        cur.execute("INSERT INTO unioninfo(memberid, area) VALUES(%s, %s)", (userid, union))
         if service == "true":
             for key, value in services.items():
                 cur.execute("INSERT INTO serviceinfo(memberid, serviceid, isactive) VALUES (%s, %s, %s)", (userid, key, value))
@@ -211,9 +219,21 @@ def addmember_post():
         elif work_stats == 0:
             cur.execute("INSERT INTO workinfo(memberid, work) VALUES(%s, %s)", (userid, 0))
             mysql.connection.commit()
-            # if mstats == 'true':
-            #     cur.execute("INSERT INTO marriage(husband_id, spouseinchurch, spousefname, spousemname, spouselname) VALUES(%s, %s, %s, %s, %s)", (userid, shere, sFName, sMName, sLName))
-            #     mysql.connection.commit()
+            if mstats == 'true':
+                if sinchurch == "true" and here == "true":
+                    if sex == "ሴት":
+                        cur.execute("INSERT INTO marriage(wife_id, husband_id) VALUES(%s, %s)", (userid, spouse))
+                        mysql.connection.commit()
+                    else:
+                        cur.execute("INSERT INTO marriage(husband_id, wife_id) VALUES(%s, %s)", (userid, spouse))
+                        mysql.connection.commit()
+                # else:
+                #     if sex != "ሴት":
+                #         cur.execute("INSERT INTO marriage(husband_id, spouseinchurch, spousefname, spousemname, spouselname) VALUES(%s, %s, %s, %s)", (userid, sFName, sMName, sLName))
+                #         mysql.connection.commit()
+                #     else:
+                #         cur.execute("INSERT INTO marriage(wife_id, spouseinchurch, spousefname, spousemname, spouselname) VALUES(%s, %s, %s, %s)", (userid, sFName, sMName, sLName))
+                #         mysql.connection.commit()
         cur.close()
         if 'profile' in request.files and profile.filename != '':
             profile.save(os.path.join(app.config['UPLOAD_FOLDER'], f'{userid}.jpg'))
@@ -283,15 +303,18 @@ def addchild_post():
         cur = mysql.connection.cursor()
         if parent == 'true':
             cur.execute("INSERT INTO children (firstname, middlename, lastname, sex, birthdate, birthmonth, birthyear, sundayschoollevel, dvbslevel, grade, motherid, fatherid) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (f_name, m_name, l_name, sex, dob, mob, yob, sunday, dvbs, grade, motherid, fatherid))
+            mysql.connection.commit()
         else:
             cur.execute("INSERT INTO children (firstname, middlename, lastname, sex, birthdate, birthmonth, birthyear, sundayschoollevel, dvbslevel, grade, mothername, fathername, familychurch, motherphone, fatherphone) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)", (f_name, m_name, l_name, sex, dob, mob, yob, sunday, dvbs, grade, mother, father, church, motherphone, fatherphone))
-        mysql.connection.commit()
+            mysql.connection.commit()
+        cur.execute("SELECT id FROM children WHERE firstname = %s AND middlename = %s AND lastname = %s ORDER BY id DESC", (f_name, m_name, l_name))
+        child = cur.fetchall()[0][0]
+        cur.close()
     except Exception as e:
         flash(f'Internal Server Error: {e}')
         return redirect(url_for("addchild"))
     else:
-        flash("Form submitted successfully!")
-        return redirect(url_for("addchild"))
+        return redirect(f"/child/{child}")
 
 
 # Analysis

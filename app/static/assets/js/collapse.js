@@ -143,41 +143,60 @@ sIworkRadio.forEach(radio => {
 // marrige status validator
 const mStatusRadio = document.querySelectorAll('input[name="mstats"]');
 const marriedForm = document.getElementById('maritalStatus');
-
+// const spauseInChurchRadio = document.querySelectorAll('input[name="sinchurch"]');
+// const ifHereOpt = document.getElementById('ifHere');
+const spouseInThisChurch = document.querySelectorAll('input[name="here"]');
+const notInThisChurchOpt = document.getElementById('noIfHere');
+const yestInThisChurchOpt = document.getElementById('yesIfHere');
+// const whereAreTheyInput = document.getElementById('whereAreThey');
 mStatusRadio.forEach(radio => {
     radio.addEventListener('change', function(){
-        const spauseInChurchRadio = document.querySelectorAll('input[name="sinchurch"]');
-        const ifHereOpt = document.getElementById('ifHere');
-        if (this.value === 'true') {
-            marriedForm.classList.remove('maritial_bool');
-            spauseInChurchRadio.forEach(radio => {
+        if(this.value ==='true'){
+            marriedForm.classList.remove('maritial_bool')
+            spouseInThisChurch.forEach(radio =>{
                 radio.addEventListener('change', function(){
-                    const spouseInThisChurch = document.querySelectorAll('input[name="here"]');
-                    const notInThisChurchOpt = document.getElementById('noIfHere');
-                    const yestInThisChurchOpt = document.getElementById('yesIfHere');
-                    const whereAreTheyInput = document.getElementById('whereAreThey');
-                    if (this.value === 'true') {
-                        ifHereOpt.classList.remove('ifhere');
-                        spouseInThisChurch.forEach(radio => {
-                            radio.addEventListener('change', function(){
-                                if (this.value === 'false') {
-                                    notInThisChurchOpt.classList.remove('no_ifhere')
-                                    yestInThisChurchOpt.classList.add('yes_ifhere')
-                                    whereAreTheyInput.required = true;
-                                } else {
-                                    notInThisChurchOpt.classList.add('no_ifhere')
-                                    yestInThisChurchOpt.classList.remove('yes_ifhere')
-                                    whereAreTheyInput.required = false
-                                }
-                            });
-                        });
-                    } else {
-                        ifHereOpt.classList.add('ifhere');
+                    if(this.value === 'true'){
+                        yestInThisChurchOpt.classList.remove('yes_ifhere')
+                        notInThisChurchOpt.classList.add('no_ifhere')
+                    } else{
+                        yestInThisChurchOpt.classList.add('yes_ifhere')
+                        notInThisChurchOpt.classList.remove('no_ifhere')
                     }
-                });
-            });
+                })
+            })
         } else {
-            marriedForm.classList.add('maritial_bool');
+            marriedForm.classList.add('maritial_bool')
         }
-    });
-});
+    })
+})
+// mStatusRadio.forEach(radio => {
+//     radio.addEventListener('change', function(){
+//         if (this.value === 'true') {
+//             marriedForm.classList.remove('maritial_bool');
+//             spauseInChurchRadio.forEach(radio => {
+//                 radio.addEventListener('change', function(){
+//                     if (this.value === 'true') {
+//                         ifHereOpt.classList.remove('ifhere');
+//                         spouseInThisChurch.forEach(radio => {
+//                             radio.addEventListener('change', function(){
+//                                 if (this.value === 'false') {
+//                                     notInThisChurchOpt.classList.remove('no_ifhere')
+//                                     yestInThisChurchOpt.classList.add('yes_ifhere')
+//                                     whereAreTheyInput.required = true;
+//                                 } else {
+//                                     notInThisChurchOpt.classList.add('no_ifhere')
+//                                     yestInThisChurchOpt.classList.remove('yes_ifhere')
+//                                     whereAreTheyInput.required = false
+//                                 }
+//                             });
+//                         });
+//                     } else {
+//                         ifHereOpt.classList.add('ifhere');
+//                     }
+//                 });
+//             });
+//         } else {
+//             marriedForm.classList.add('maritial_bool');
+//         }
+//     });
+// });

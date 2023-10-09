@@ -958,6 +958,42 @@
                         </div>
                       </div>
                     </div>
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                          <label for="v_union">የሰፈር ህብረት</label>
+                          <select
+                            id="v_union"
+                            name="vunion"
+                            class="form-control"
+                            >
+                            <option value="በሰፈር ህብረት ውስጥ የሉም">በሰፈር ህብረት ውስጥ የሉም</option>
+                            <option value="አንቆርጫ ገብርኤል">አንቆርጫ ገብርኤል</option>
+                            <option value="ኮሶ ሜዳ">ኮሶ ሜዳ</option>
+                            <option value="ሲቪል ሰርቪስ">ሲቪል ሰርቪስ</option>
+                            <option value="ጤና ጣብያ">ጤና ጣብያ</option>
+                            <option value="ደህንነት">ደህንነት</option>
+                            <option value="አባዶ">አባዶ</option>
+                            <option value="ጉርድ ሾላ">ጉርድ ሾላ</option>
+                            <option value="ዜሮ ሁለት (ቤተክርስቲያን አካባቢ)">ዜሮ ሁለት (ቤተክርስቲያን አካባቢ)</option>
+                            <option value="ወንዲራድ">ወንዲራድ</option>
+                            <option value="ላይ አምባ">ላይ አምባ</option>
+                            <option value="ሰሚት 72">ሰሚት 72</option>
+                            <option value="ኮሌጅ">ኮሌጅ</option>
+                            <option value="አያት ኮንዶሚየም">አያት ኮንዶሚየም</option>
+                            <option value="ንብ እርባታ">ንብ እርባታ</option>
+                            <option value="ሳላይሽ">ሳላይሽ</option>
+                            <option value="ኤልሞ">ኤልሞ</option>
+                            <option value="ሂልሳይድ">ሂልሳይድ</option>
+                            <option value="አድዋ">አድዋ</option>
+                            <option value="ወሰን ሰንሻይን">ወሰን ሰንሻይን</option>
+                            <option value="ቶፊቅ ዳቦ ቤት">ቶፊቅ ዳቦ ቤት</option>
+                            <option value="ሃና ማርያም">ሃና ማርያም</option>
+                            <option value="አራብሳ">አራብሳ</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
                     <div class="row learned" id="learned">
                       <div class="col-md-6">
                         <div class="form-group">
@@ -1202,22 +1238,22 @@
                       <div class="row">
                         <div class="col-md-12">
                           <div class="form-group">
-                            <div class="spause_here" id="spauseHere">
+                            <div class="" id="">
                               <!-- if they are in any kind of church -->
                               <div class="form-group">
-                                <span>ባለቤት በወንጌላውያን ቤ/ክ ታቅፈዋል?</span>
+                                <span>የዚህች ቤ/ክ አባል ናችው?</span>
                                 <div
                                   class="custom-control custom-radio custom-control-inline"
                                 >
                                   <input
                                     type="radio"
-                                    name="sinchurch"
+                                    name="here"
                                     value="true"
-                                    id="sHereT"
+                                    id="hereT"
                                     class="custom-control-input"
                                   />
                                   <label
-                                    for="sHereT"
+                                    for="hereT"
                                     class="custom-control-label"
                                     >አዎ</label
                                   >
@@ -1227,244 +1263,214 @@
                                 >
                                   <input
                                     type="radio"
-                                    name="sinchurch"
+                                    name="here"
                                     value="false"
-                                    id="sHereF"
+                                    id="hereF"
                                     class="custom-control-input"
                                   />
                                   <label
-                                    for="sHereF"
+                                    for="hereF"
                                     class="custom-control-label"
                                     >አይ</label
                                   >
                                 </div>
                               </div>
+                              <!-- if they are in this church -->
 
-                              <div class="ifhere" id="ifHere">
-                                <!-- if they are in this church -->
-
-                                <div class="form-group">
-                                  <span>የዚህች ቤ/ክ አባል ናችው?</span>
-                                  <div
-                                    class="custom-control custom-radio custom-control-inline"
-                                  >
-                                    <input
-                                      type="radio"
-                                      name="here"
-                                      value="true"
-                                      id="hereT"
-                                      class="custom-control-input"
-                                    />
-                                    <label
-                                      for="hereT"
-                                      class="custom-control-label"
-                                      >አዎ</label
-                                    >
+                              <div class="yes_ifhere" id="yesIfHere">
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <label for="search_spause_f_name"
+                                        >ስም *</label
+                                      >
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="search_spause_f_name"
+                                        name="sname"
+                                        list="datalist"
+                                        placeholder="ስም"
+                                        maxlength="100"
+                                      />
+                                      <datalist id="datalist"></datalist>
+                                    </div>
                                   </div>
-                                  <div
-                                    class="custom-control custom-radio custom-control-inline"
-                                  >
-                                    <input
-                                      type="radio"
-                                      name="here"
-                                      value="false"
-                                      id="hereF"
-                                      class="custom-control-input"
-                                    />
-                                    <label
-                                      for="hereF"
-                                      class="custom-control-label"
-                                      >አይ</label
-                                    >
-                                  </div>
-                                </div>
-                                <!-- if they are in this church -->
-                                <div class="yes_ifhere" id="yesIfHere">
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                        <label for="search_spause_f_name">ስም *</label>
+                                  <div class="col-md-6">
+                                    <div class="row">
+                                      <div class="col-4">
+                                        <label for="merdate"> የጋብቻ </label>
                                         <input
-                                          type="text"
+                                          type="number"
+                                          id="merdate"
+                                          name="merdate"
+                                          min="1"
+                                          max="30"
+                                          step="1"
                                           class="form-control"
-                                          id="search_spause_f_name"
-                                          name="sname"
-                                          list="datalist"
-                                          placeholder="ስም"
-                                          maxlength="100"
+                                          placeholder="ቀን"
                                         />
-                                        <datalist id="datalist"></datalist>
                                       </div>
-                                    </div>
-                                  </div>
-                                  <div class="row">
-                                    <div class="col-4">
-                                      <label for="merdate"> የጋብቻ </label>
-                                      <input
-                                        type="number"
-                                        id="merdate"
-                                        name="merdate"
-                                        min="1"
-                                        max="30"
-                                        step="1"
-                                        class="form-control"
-                                        placeholder="ቀን"
-                                      />
-                                    </div>
-                                    <div class="col--md-4">
-                                      <label for="mermonth">ቀን:</label>
-                                      <input
-                                        type="number"
-                                        id="mermonth"
-                                        name="mermonth"
-                                        min="1"
-                                        max="12"
-                                        step="1"
-                                        class="form-control"
-                                        placeholder="ወር"
-                                      />
-                                    </div>
-                                    <div class="col-4">
-                                      <label for="meryear">ዓ.ም:</label>
-                                      <input
-                                        type="number"
-                                        id="meryear"
-                                        name="meryear"
-                                        min="1900"
-                                        max="2099"
-                                        step="1"
-                                        class="form-control"
-                                        placeholder="ዓ.ም"
-                                      />
+                                      <div class="col--md-4">
+                                        <label for="mermonth">ቀን:</label>
+                                        <input
+                                          type="number"
+                                          id="mermonth"
+                                          name="mermonth"
+                                          min="1"
+                                          max="12"
+                                          step="1"
+                                          class="form-control"
+                                          placeholder="ወር"
+                                        />
+                                      </div>
+                                      <div class="col-4">
+                                        <label for="meryear">ዓ.ም:</label>
+                                        <input
+                                          type="number"
+                                          id="meryear"
+                                          name="meryear"
+                                          min="1900"
+                                          max="2099"
+                                          step="1"
+                                          class="form-control"
+                                          placeholder="ዓ.ም"
+                                        />
+                                      </div>
                                     </div>
                                   </div>
                                 </div>
-                                <div class="no_ifhere" id="noIfHere">
-                                  <!-- spause where church 100char-->
-                                  
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                      </div>
+                              </div>
+                              <!-- if they are in this church -->
+
+                              <div class="no_ifhere" id="noIfHere">
+                                <!-- spause where church 100char-->
+
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group"></div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-1 px-1">
+                                    <div class="form-group">
+                                      <label for="stitle">ማዕረግ</label>
+                                      <select
+                                        id="stitle"
+                                        name="stitle"
+                                        class="form-control"
+                                      >
+                                        <option value="አቶ">አቶ</option>
+                                        <option value="ወይዝሮ">ወይዘሮ</option>
+                                        <option value="ወይዘሪት">ወይዘሪት</option>
+                                        <option value="ወንድም">ወንድም</option>
+                                        <option value="እህት">እህት</option>
+                                        <option value="ተማሪ">ተማሪ</option>
+                                        <option value="መጋቢ">መጋቢ</option>
+                                        <option value="ዶክተር">ዶክተር</option>
+                                      </select>
                                     </div>
                                   </div>
-                                  <div class="row">
-                                    <div class="col-md-1 px-1">
-                                      <div class="form-group">
-                                        <label for="stitle">ማዕረግ</label>
-                                        <select
-                                          id="stitle"
-                                          name="stitle"
-                                          class="form-control"
-                                        >
-                                          <option value="አቶ">አቶ</option>
-                                          <option value="ወይዝሮ">ወይዘሮ</option>
-                                          <option value="ወይዘሪት">ወይዘሪት</option>
-                                          <option value="ወንድም">ወንድም</option>
-                                          <option value="እህት">እህት</option>
-                                          <option value="ተማሪ">ተማሪ</option>
-                                          <option value="መጋቢ">መጋቢ</option>
-                                          <option value="ዶክተር">ዶክተር</option>
-                                        </select>
-                                      </div>
-                                    </div>
-                                    <div class="col-md-4 px-1">
-                                      <div class="form-group">
-                                        <label for="sf_name">ስም *</label>
-                                        <input
-                                          type="text"
-                                          class="form-control"
-                                          id="sf_name"
-                                          name="sfname"
-                                          placeholder="ስም"
-                                          maxlength="100"
-                                        />
-                                      </div>
-                                    </div>
-                                    <div class="col-md-4 px-1">
-                                      <div class="form-group">
-                                        <label for="sm_name">የአባት ስም *</label>
-                                        <input
-                                          type="text"
-                                          class="form-control"
-                                          id="sm_name"
-                                          name="smname"
-                                          placeholder="የአባት ስም"
-                                          maxlength="100"
-                                        />
-                                      </div>
-                                    </div>
-                                    <div class="col-md-3 px-1">
-                                      <div class="form-group">
-                                        <label for="sl_name">የአያት ስም *</label>
-                                        <input
-                                          type="text"
-                                          class="form-control"
-                                          id="slname"
-                                          name="slname"
-                                          placeholder="የአያት ስም"
-                                          maxlength="100"
-                                        />
-                                      </div>
+                                  <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                      <label for="sf_name">ስም *</label>
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="sf_name"
+                                        name="sfname"
+                                        placeholder="ስም"
+                                        maxlength="100"
+                                      />
                                     </div>
                                   </div>
-                                  <div class="row">
-                                    <div class="col-md-6">
-                                      <div class="form-group">
-                                        <div class="row">
-                                          <div class="col-4">
-                                            <label for="merdate"> የጋብቻ </label>
-                                            <input
-                                              type="number"
-                                              id="merdate"
-                                              name="merdate"
-                                              min="1"
-                                              max="30"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ቀን"
-                                            />
-                                          </div>
-                                          <div class="col--md-4">
-                                            <label for="mermonth">ቀን:</label>
-                                            <input
-                                              type="number"
-                                              id="mermonth"
-                                              name="mermonth"
-                                              min="1"
-                                              max="12"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ወር"
-                                            />
-                                          </div>
-                                          <div class="col-4">
-                                            <label for="meryear">ዓ.ም:</label>
-                                            <input
-                                              type="number"
-                                              id="meryear"
-                                              name="meryear"
-                                              min="1900"
-                                              max="2099"
-                                              step="1"
-                                              class="form-control"
-                                              placeholder="ዓ.ም"
-                                            />
-                                          </div>
+                                  <div class="col-md-4 px-1">
+                                    <div class="form-group">
+                                      <label for="sm_name">የአባት ስም *</label>
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="sm_name"
+                                        name="smname"
+                                        placeholder="የአባት ስም"
+                                        maxlength="100"
+                                      />
+                                    </div>
+                                  </div>
+                                  <div class="col-md-3 px-1">
+                                    <div class="form-group">
+                                      <label for="sl_name">የአያት ስም *</label>
+                                      <input
+                                        type="text"
+                                        class="form-control"
+                                        id="slname"
+                                        name="slname"
+                                        placeholder="የአያት ስም"
+                                        maxlength="100"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-md-6">
+                                    <div class="form-group">
+                                      <div class="row">
+                                        <div class="col-4">
+                                          <label for="merdate"> የጋብቻ </label>
+                                          <input
+                                            type="number"
+                                            id="merdate"
+                                            name="merdate"
+                                            min="1"
+                                            max="30"
+                                            step="1"
+                                            class="form-control"
+                                            placeholder="ቀን"
+                                          />
+                                        </div>
+                                        <div class="col--md-4">
+                                          <label for="mermonth">ቀን:</label>
+                                          <input
+                                            type="number"
+                                            id="mermonth"
+                                            name="mermonth"
+                                            min="1"
+                                            max="12"
+                                            step="1"
+                                            class="form-control"
+                                            placeholder="ወር"
+                                          />
+                                        </div>
+                                        <div class="col-4">
+                                          <label for="meryear">ዓ.ም:</label>
+                                          <input
+                                            type="number"
+                                            id="meryear"
+                                            name="meryear"
+                                            min="1900"
+                                            max="2099"
+                                            step="1"
+                                            class="form-control"
+                                            placeholder="ዓ.ም"
+                                          />
                                         </div>
                                       </div>
                                     </div>
                                   </div>
-                                  <label>
-                                    የዚህች ቤ/ክ አባል ካልሆኑ የት ናቸው?
-                                    <input
-                                      type="text"
-                                      id="whereAreThey"
-                                      maxlength="100"
-                                      name="schurch"
-                                      class="form-control"
-                                    />
-                                  </label>
+                                  <div class="col-md-6">
+                                    <div class="">
+                                      <label for='whereAreThey' class='form-label'>
+                                        የዚህች ቤ/ክ አባል ካልሆኑ የት ናቸው?
+                                      </label>
+                                        <input
+                                          type="text"
+                                          id="whereAreThey"
+                                          maxlength="100"
+                                          name="schurch"
+                                          class="form-control"
+                                        />
+                                    </div>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -1503,24 +1509,32 @@
       </div>
     </div>
     <script>
-      $(document).ready(function(){
-          $("#search_spause_f_name").on("input", function(e){
-              $("#datalist").empty();
-              $.ajax({
-                  method: "post",
-                  url: "/livesearch",
-                  data: {text: $("#search_spause_f_name").val()},
-                  success: function(res){
-                      $.each(res, function(index, value){
-                          var option = $("<option>").text(value.id + " - " + value.firstname + " " + value.middlename + " " + value.lastname);
-                          
-                          $("#datalist").append(option);
-                      });
-                  }
+      $(document).ready(function () {
+        $("#search_spause_f_name").on("input", function (e) {
+          $("#datalist").empty();
+          $.ajax({
+            method: "post",
+            url: "/livesearch",
+            data: { text: $("#search_spause_f_name").val() },
+            success: function (res) {
+              $.each(res, function (index, value) {
+                var option = $("<option>").text(
+                  value.id +
+                    " - " +
+                    value.firstname +
+                    " " +
+                    value.middlename +
+                    " " +
+                    value.lastname
+                );
+
+                $("#datalist").append(option);
               });
+            },
           });
+        });
       });
-  </script>
+    </script>
     <!--   Core JS Files   -->
     <script src="{{url_for('static', filename='assets/js/collapse.js')}}"></script>
     <script src="{{url_for('static', filename='assets/js/core/jquery.min.js')}}"></script>
