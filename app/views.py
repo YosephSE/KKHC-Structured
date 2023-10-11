@@ -220,20 +220,20 @@ def addmember_post():
             cur.execute("INSERT INTO workinfo(memberid, work) VALUES(%s, %s)", (userid, 0))
             mysql.connection.commit()
             if mstats == 'true':
-                if sinchurch == "true" and here == "true":
+                if here == "true":
                     if sex == "ሴት":
                         cur.execute("INSERT INTO marriage(wife_id, husband_id) VALUES(%s, %s)", (userid, spouse))
                         mysql.connection.commit()
                     else:
                         cur.execute("INSERT INTO marriage(husband_id, wife_id) VALUES(%s, %s)", (userid, spouse))
                         mysql.connection.commit()
-                # else:
-                #     if sex != "ሴት":
-                #         cur.execute("INSERT INTO marriage(husband_id, spouseinchurch, spousefname, spousemname, spouselname) VALUES(%s, %s, %s, %s)", (userid, sFName, sMName, sLName))
-                #         mysql.connection.commit()
-                #     else:
-                #         cur.execute("INSERT INTO marriage(wife_id, spouseinchurch, spousefname, spousemname, spouselname) VALUES(%s, %s, %s, %s)", (userid, sFName, sMName, sLName))
-                #         mysql.connection.commit()
+                else:
+                    if sex != "ሴት":
+                        cur.execute("INSERT INTO marriage(husband_id, spouseinchurch, spousefname, spousemname, spouselname) VALUES(%s, %s, %s, %s)", (userid, sfname, smname, slname))
+                        mysql.connection.commit()
+                    else:
+                        cur.execute("INSERT INTO marriage(wife_id, spouseinchurch, spousefname, spousemname, spouselname) VALUES(%s, %s, %s, %s)", (userid, sfname, smname, slname))
+                        mysql.connection.commit()
         cur.close()
         if 'profile' in request.files and profile.filename != '':
             profile.save(os.path.join(app.config['UPLOAD_FOLDER'], f'{userid}.jpg'))
